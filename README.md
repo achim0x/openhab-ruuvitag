@@ -284,7 +284,12 @@ sitemap default label="My first sitemap"
 </p>
 </details>
 
+
 Copy the battery level images battery10.png ... battery100.png to /etc/openhab2/icons/classic
+
+Open PaperUI -> Configuration -> Services -> BasicUI  
+Set Icon Format to bitmap
+
 #### Setup Network Share
 <https://docs.openhab.org/installation/linux.html#network-sharing>
 
