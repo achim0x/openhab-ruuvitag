@@ -173,16 +173,18 @@ mosquitto ist hier die broker id, die dann auch in den items verwendet wird, und
 
 #### Create a items file per tag
 ```
-String          ruuvi1Measurements       "Measurement:" { mqtt = "<[mosquitto:bad/measurements:state:default]" }
-DateTime        ruuvi1LastUpdate         "Last Update [%1$td/%1$tm/%1$tY %1$tR]"    <calendar>
+String          ruuvi1Measurements       "Measurement:" { mqtt = "<[mosquitto:livingroom/measurements:state:default]" }
+DateTime        ruuvi1LastUpdate         "Last Update [%1$td.%1$tm.%1$tY %1$tR]"    <calendar>
 Number          ruuvi1Battery            "BatterieVoltage [%.2f V]"
-Number          ruuvi1BatteryIcon        "Battery State [%d %%]"                    <battery>
+Number          ruuvi1BatteryIcon        "Battery State [%d %%]"           <battery>
 Number          ruuvi1Humidity           "Humidity [%.2f %%]"              <humidity>
 Number          ruuvi1Pressure           "Pressure [%.2f hPa]"             <pressure>
 Number          ruuvi1Temperature        "Temperature [%.2f °C]"           <temperature>
-Number          ruuvi1Rssi               "Rssi [%d] dBm"
+Number          ruuvi1Rssi               "Rssi [%d] dBm"                   <signal>
 
 ```
+
+For availabel icons see: <https://docs.openhab.org/v2.1/addons/iconsets/classic/readme.html>
 
 #### Create a rules file per tag
 <details><summary>Click to expand rules file</summary>
