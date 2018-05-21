@@ -1,0 +1,26 @@
+sitemap default label="My first sitemap"
+{
+  Frame label="Test Ruuvi Tag1"{
+    Text item=ruuvi1Temperature
+    Text item=ruuvi1Humidity
+    Text item=ruuvi1Pressure
+    Text item=ruuvi1Rssi icon="signal0"    visibility=[ruuvi1RssiIcon==0]
+        Text item=ruuvi1Rssi icon="signal1"    visibility=[ruuvi1RssiIcon==1]
+        Text item=ruuvi1Rssi icon="signal2"    visibility=[ruuvi1RssiIcon==2]
+        Text item=ruuvi1Rssi icon="signal3"    visibility=[ruuvi1RssiIcon==3]
+        Text item=ruuvi1Rssi icon="signal4"    visibility=[ruuvi1RssiIcon==4]
+    Text item=ruuvi1LastUpdate
+    Text item=ruuvi1BatteryIcon
+    Text item=ruuvi1Battery icon="battery0"	visibility=[ruuvi1BatteryIcon==0]
+        Text item=ruuvi1Battery icon="battery10"	visibility=[ruuvi1BatteryIcon==10]
+        Text item=ruuvi1Battery icon="battery20"	visibility=[ruuvi1BatteryIcon==20]
+        Text item=ruuvi1Battery icon="battery30"	visibility=[ruuvi1BatteryIcon==30]
+        Text item=ruuvi1Battery icon="battery40"	visibility=[ruuvi1BatteryIcon==40]
+        Text item=ruuvi1Battery icon="battery50"	visibility=[ruuvi1BatteryIcon==50]
+        Text item=ruuvi1Battery icon="battery60"	visibility=[ruuvi1BatteryIcon==60]
+        Text item=ruuvi1Battery icon="battery70"	visibility=[ruuvi1BatteryIcon==70]
+        Text item=ruuvi1Battery icon="battery80"	visibility=[ruuvi1BatteryIcon==80]
+        Text item=ruuvi1Battery icon="battery90"	visibility=[ruuvi1BatteryIcon==90]
+        Text item=ruuvi1Battery icon="battery100"	visibility=[ruuvi1BatteryIcon==100]
+  }
+}

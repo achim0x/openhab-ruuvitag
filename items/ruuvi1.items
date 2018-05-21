@@ -1,0 +1,9 @@
+String          ruuvi1Measurements       "Measurement:" { mqtt = "<[mosquitto:outdoor/measurements:state:default]" }
+DateTime        ruuvi1LastUpdate         "Last Update [%1$td.%1$tm.%1$tY %1$tR]"    <calendar>
+Number          ruuvi1Battery            "Battery Voltage [%.2f V]"
+Number          ruuvi1BatteryIcon        "Battery State [%d %%]"           <battery>
+Number          ruuvi1Humidity           "Humidity [%.2f %%]"              <humidity>
+Number          ruuvi1Pressure           "Pressure [%.2f hPa]"             <pressure>
+Number          ruuvi1Temperature        "Temperature [%.2f °C]"           <outdoortemp>
+Number          ruuvi1Rssi               "Rssi [%d dBm]"                   
+Number          ruuvi1RssiIcon            "Rssi State"                      <qualityofservice>
