@@ -162,7 +162,7 @@ sudo apt-get install apt-transport-https
 echo 'deb https://dl.bintray.com/openhab/apt-repo2 stable main' | sudo tee /etc/apt/sources.list.d/openhab2.list
 sudo apt-get update
 sudo apt-get install openhab2
-sudo apt-get install openhab2-addons
+sudo apt-get install openhab2-addons openhab2-addons-legacy
 sudo systemctl start openhab2.service
 sudo systemctl status openhab2.service
 sudo systemctl daemon-reload
