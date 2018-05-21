@@ -186,6 +186,11 @@ Number          ruuvi1Rssi               "Rssi [%d] dBm"                   <sign
 
 For availabel icons see: <https://docs.openhab.org/v2.1/addons/iconsets/classic/readme.html>
 
+#### Timezone Setting
+By default OpenHAB is using UTC, to change this to local time:  
+`sudo nano /etc/default/openhab2`  
+and add: `EXTRA_JAVA_OPTS="-Duser.timezone=Europe/Berlin"`
+
 #### Create a rules file per tag
 <details><summary>Click to expand rules file</summary>
 <p>
@@ -312,3 +317,4 @@ influxd restore -portable /tmp/backup_ex
 + Clear commandline history
 + Delete DHCP cache
 + Shrink Image
++ Replace MAC Adresses by dummy values in node red
