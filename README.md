@@ -93,7 +93,9 @@ sudo apt-get install build-essential libudev-dev libbluetooth-dev
 
 cd $HOME/.node-red
 npm install node-red-contrib-noble
-
+```
+Set capability to use bluetooth without super user rights
+```
 sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)
 ```
 
