@@ -270,7 +270,9 @@ influxd restore -portable /tmp/backup_ex
 
 ## OpenHAB Backup / Restore
 `> sudo openhab-cli backup
+
 will create a backup in /var/lib/openhab2/backups, that can be restored with
+
 `> sudo openhab-cli restore
 
 # Todo for Sharing Image
