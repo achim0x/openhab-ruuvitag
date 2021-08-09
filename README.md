@@ -268,6 +268,11 @@ influxd restore -portable /tmp/backup_ex
 ## Drop all measurements
 `> drop series from downsampled_measurements`
 
+## OpenHAB Backup / Restore
+`> sudo openhab-cli backup
+will create a backup in /var/lib/openhab2/backups, that can be restored with
+`> sudo openhab-cli restore
+
 # Todo for Sharing Image
 + Change pi user password
 + Change SMB openhab password
