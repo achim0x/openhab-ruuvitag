@@ -1,0 +1,10 @@
+// Badezimmer
+String          ruuvi2Measurements       "Measurement:" { mqtt = "<[mosquitto:bad/measurements:state:default]" }
+DateTime        ruuvi2LastUpdate         "Last Update [%1$td.%1$tm.%1$tY %1$tR]"    <calendar>
+Number          ruuvi2Battery            "Battery Voltage [%.2f V]"
+Number          ruuvi2BatteryIcon        "Battery State [%d %%]"           <battery>
+Number          ruuvi2Humidity           "Humidity [%.2f %%]"              <humidity>
+Number          ruuvi2Pressure           "Pressure [%.2f hPa]"             <pressure>
+Number          ruuvi2Temperature        "Temperature [%.2f °C]"           <outdoortemp>
+Number          ruuvi2Rssi               "Rssi [%d dBm]"                   
+Number          ruuvi2RssiIcon            "Rssi State"                     <qualityofservice>

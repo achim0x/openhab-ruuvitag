@@ -1,0 +1,10 @@
+// Garage
+String          ruuvi6Measurements       "Measurement:" { mqtt = "<[mosquitto:garage/measurements:state:default]" }
+DateTime        ruuvi6LastUpdate         "Last Update [%1$td.%1$tm.%1$tY %1$tR]"    <calendar>
+Number          ruuvi6Battery            "Battery Voltage [%.2f V]"
+Number          ruuvi6BatteryIcon        "Battery State [%d %%]"           <battery>
+Number          ruuvi6Humidity           "Humidity [%.2f %%]"              <humidity>
+Number          ruuvi6Pressure           "Pressure [%.2f hPa]"             <pressure>
+Number          ruuvi6Temperature        "Temperature [%.2f °C]"           <outdoortemp>
+Number          ruuvi6Rssi               "Rssi [%d dBm]"                   
+Number          ruuvi6RssiIcon            "Rssi State"                      <qualityofservice>

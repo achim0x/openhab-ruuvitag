@@ -1,0 +1,135 @@
+sitemap default label="My first sitemap"
+{
+  Frame label="Wohnzimmer"{
+    Text item=ruuvi1Temperature
+    Text item=ruuvi1Humidity
+    Text item=ruuvi1Pressure
+    Text item=ruuvi1Rssi icon="signal0"    visibility=[ruuvi1RssiIcon==0]
+        Text item=ruuvi1Rssi icon="signal1"    visibility=[ruuvi1RssiIcon==1]
+        Text item=ruuvi1Rssi icon="signal2"    visibility=[ruuvi1RssiIcon==2]
+        Text item=ruuvi1Rssi icon="signal3"    visibility=[ruuvi1RssiIcon==3]
+        Text item=ruuvi1Rssi icon="signal4"    visibility=[ruuvi1RssiIcon==4]
+    Text item=ruuvi1LastUpdate
+    Text item=ruuvi1Battery icon="battery0"	visibility=[ruuvi1BatteryIcon==0]
+        Text item=ruuvi1Battery icon="battery10"	visibility=[ruuvi1BatteryIcon==10]
+        Text item=ruuvi1Battery icon="battery20"	visibility=[ruuvi1BatteryIcon==20]
+        Text item=ruuvi1Battery icon="battery30"	visibility=[ruuvi1BatteryIcon==30]
+        Text item=ruuvi1Battery icon="battery40"	visibility=[ruuvi1BatteryIcon==40]
+        Text item=ruuvi1Battery icon="battery50"	visibility=[ruuvi1BatteryIcon==50]
+        Text item=ruuvi1Battery icon="battery60"	visibility=[ruuvi1BatteryIcon==60]
+        Text item=ruuvi1Battery icon="battery70"	visibility=[ruuvi1BatteryIcon==70]
+        Text item=ruuvi1Battery icon="battery80"	visibility=[ruuvi1BatteryIcon==80]
+        Text item=ruuvi1Battery icon="battery90"	visibility=[ruuvi1BatteryIcon==90]
+        Text item=ruuvi1Battery icon="battery100"	visibility=[ruuvi1BatteryIcon==100]
+  }
+  Frame label="Badezimmer"{
+    Text item=ruuvi2Temperature
+    Text item=ruuvi2Humidity
+    Text item=ruuvi2Pressure
+    Text item=ruuvi2Rssi icon="signal0"    visibility=[ruuvi2RssiIcon==0]
+        Text item=ruuvi2Rssi icon="signal1"    visibility=[ruuvi2RssiIcon==1]
+        Text item=ruuvi2Rssi icon="signal2"    visibility=[ruuvi2RssiIcon==2]
+        Text item=ruuvi2Rssi icon="signal3"    visibility=[ruuvi2RssiIcon==3]
+        Text item=ruuvi2Rssi icon="signal4"    visibility=[ruuvi2RssiIcon==4]
+    Text item=ruuvi2LastUpdate
+    Text item=ruuvi2Battery icon="battery0"	visibility=[ruuvi2BatteryIcon==0]
+        Text item=ruuvi2Battery icon="battery10"	visibility=[ruuvi2BatteryIcon==10]
+        Text item=ruuvi2Battery icon="battery20"	visibility=[ruuvi2BatteryIcon==20]
+        Text item=ruuvi2Battery icon="battery30"	visibility=[ruuvi2BatteryIcon==30]
+        Text item=ruuvi2Battery icon="battery40"	visibility=[ruuvi2BatteryIcon==40]
+        Text item=ruuvi2Battery icon="battery50"	visibility=[ruuvi2BatteryIcon==50]
+        Text item=ruuvi2Battery icon="battery60"	visibility=[ruuvi2BatteryIcon==60]
+        Text item=ruuvi2Battery icon="battery70"	visibility=[ruuvi2BatteryIcon==70]
+        Text item=ruuvi2Battery icon="battery80"	visibility=[ruuvi2BatteryIcon==80]
+        Text item=ruuvi2Battery icon="battery90"	visibility=[ruuvi2BatteryIcon==90]
+        Text item=ruuvi2Battery icon="battery100"	visibility=[ruuvi2BatteryIcon==100]
+  }
+  Frame label="Outdoor"{
+    Text item=ruuvi3Temperature
+    Text item=ruuvi3Humidity
+    Text item=ruuvi3Pressure
+    Text item=ruuvi3Rssi icon="signal0"    visibility=[ruuvi3RssiIcon==0]
+        Text item=ruuvi3Rssi icon="signal1"    visibility=[ruuvi3RssiIcon==1]
+        Text item=ruuvi3Rssi icon="signal2"    visibility=[ruuvi3RssiIcon==2]
+        Text item=ruuvi3Rssi icon="signal3"    visibility=[ruuvi3RssiIcon==3]
+        Text item=ruuvi3Rssi icon="signal4"    visibility=[ruuvi3RssiIcon==4]
+    Text item=ruuvi3LastUpdate
+    Text item=ruuvi3Battery icon="battery0"	visibility=[ruuvi3BatteryIcon==0]
+        Text item=ruuvi3Battery icon="battery10"	visibility=[ruuvi3BatteryIcon==10]
+        Text item=ruuvi3Battery icon="battery20"	visibility=[ruuvi3BatteryIcon==20]
+        Text item=ruuvi3Battery icon="battery30"	visibility=[ruuvi3BatteryIcon==30]
+        Text item=ruuvi3Battery icon="battery40"	visibility=[ruuvi3BatteryIcon==40]
+        Text item=ruuvi3Battery icon="battery50"	visibility=[ruuvi3BatteryIcon==50]
+        Text item=ruuvi3Battery icon="battery60"	visibility=[ruuvi3BatteryIcon==60]
+        Text item=ruuvi3Battery icon="battery70"	visibility=[ruuvi3BatteryIcon==70]
+        Text item=ruuvi3Battery icon="battery80"	visibility=[ruuvi3BatteryIcon==80]
+        Text item=ruuvi3Battery icon="battery90"	visibility=[ruuvi3BatteryIcon==90]
+        Text item=ruuvi3Battery icon="battery100"	visibility=[ruuvi3BatteryIcon==100]
+  }
+  Frame label="Dachzimmer"{
+    Text item=ruuvi4Temperature
+    Text item=ruuvi4Humidity
+    Text item=ruuvi4Pressure
+    Text item=ruuvi4Rssi icon="signal0"    visibility=[ruuvi4RssiIcon==0]
+        Text item=ruuvi4Rssi icon="signal1"    visibility=[ruuvi4RssiIcon==1]
+        Text item=ruuvi4Rssi icon="signal2"    visibility=[ruuvi4RssiIcon==2]
+        Text item=ruuvi4Rssi icon="signal3"    visibility=[ruuvi4RssiIcon==3]
+        Text item=ruuvi4Rssi icon="signal4"    visibility=[ruuvi4RssiIcon==4]
+    Text item=ruuvi4LastUpdate
+    Text item=ruuvi4Battery icon="battery0"	visibility=[ruuvi4BatteryIcon==0]
+        Text item=ruuvi4Battery icon="battery10"	visibility=[ruuvi4BatteryIcon==10]
+        Text item=ruuvi4Battery icon="battery20"	visibility=[ruuvi4BatteryIcon==20]
+        Text item=ruuvi4Battery icon="battery30"	visibility=[ruuvi4BatteryIcon==30]
+        Text item=ruuvi4Battery icon="battery40"	visibility=[ruuvi4BatteryIcon==40]
+        Text item=ruuvi4Battery icon="battery50"	visibility=[ruuvi4BatteryIcon==50]
+        Text item=ruuvi4Battery icon="battery60"	visibility=[ruuvi4BatteryIcon==60]
+        Text item=ruuvi4Battery icon="battery70"	visibility=[ruuvi4BatteryIcon==70]
+        Text item=ruuvi4Battery icon="battery80"	visibility=[ruuvi4BatteryIcon==80]
+        Text item=ruuvi4Battery icon="battery90"	visibility=[ruuvi4BatteryIcon==90]
+        Text item=ruuvi4Battery icon="battery100"	visibility=[ruuvi4BatteryIcon==100]
+  }  
+  Frame label="Schlafzimmer"{
+    Text item=ruuvi5Temperature
+    Text item=ruuvi5Humidity
+    Text item=ruuvi5Pressure
+    Text item=ruuvi5Rssi icon="signal0"    visibility=[ruuvi5RssiIcon==0]
+        Text item=ruuvi5Rssi icon="signal1"    visibility=[ruuvi5RssiIcon==1]
+        Text item=ruuvi5Rssi icon="signal2"    visibility=[ruuvi5RssiIcon==2]
+        Text item=ruuvi5Rssi icon="signal3"    visibility=[ruuvi5RssiIcon==3]
+        Text item=ruuvi5Rssi icon="signal4"    visibility=[ruuvi5RssiIcon==4]
+    Text item=ruuvi5LastUpdate
+    Text item=ruuvi5Battery icon="battery0"	visibility=[ruuvi5BatteryIcon==0]
+        Text item=ruuvi5Battery icon="battery10"	visibility=[ruuvi5BatteryIcon==10]
+        Text item=ruuvi5Battery icon="battery20"	visibility=[ruuvi5BatteryIcon==20]
+        Text item=ruuvi5Battery icon="battery30"	visibility=[ruuvi5BatteryIcon==30]
+        Text item=ruuvi5Battery icon="battery40"	visibility=[ruuvi5BatteryIcon==40]
+        Text item=ruuvi5Battery icon="battery50"	visibility=[ruuvi5BatteryIcon==50]
+        Text item=ruuvi5Battery icon="battery60"	visibility=[ruuvi5BatteryIcon==60]
+        Text item=ruuvi5Battery icon="battery70"	visibility=[ruuvi5BatteryIcon==70]
+        Text item=ruuvi5Battery icon="battery80"	visibility=[ruuvi5BatteryIcon==80]
+        Text item=ruuvi5Battery icon="battery90"	visibility=[ruuvi5BatteryIcon==90]
+        Text item=ruuvi5Battery icon="battery100"	visibility=[ruuvi5BatteryIcon==100]
+  }
+  Frame label="Garage"{
+    Text item=ruuvi6Temperature
+    Text item=ruuvi6Humidity
+    Text item=ruuvi6Pressure
+    Text item=ruuvi6Rssi icon="signal0"    visibility=[ruuvi6RssiIcon==0]
+        Text item=ruuvi6Rssi icon="signal1"    visibility=[ruuvi6RssiIcon==1]
+        Text item=ruuvi6Rssi icon="signal2"    visibility=[ruuvi6RssiIcon==2]
+        Text item=ruuvi6Rssi icon="signal3"    visibility=[ruuvi6RssiIcon==3]
+        Text item=ruuvi6Rssi icon="signal4"    visibility=[ruuvi6RssiIcon==4]
+    Text item=ruuvi6LastUpdate
+    Text item=ruuvi6Battery icon="battery0"	visibility=[ruuvi6BatteryIcon==0]
+        Text item=ruuvi6Battery icon="battery10"	visibility=[ruuvi6BatteryIcon==10]
+        Text item=ruuvi6Battery icon="battery20"	visibility=[ruuvi6BatteryIcon==20]
+        Text item=ruuvi6Battery icon="battery30"	visibility=[ruuvi6BatteryIcon==30]
+        Text item=ruuvi6Battery icon="battery40"	visibility=[ruuvi6BatteryIcon==40]
+        Text item=ruuvi6Battery icon="battery50"	visibility=[ruuvi6BatteryIcon==50]
+        Text item=ruuvi6Battery icon="battery60"	visibility=[ruuvi6BatteryIcon==60]
+        Text item=ruuvi6Battery icon="battery70"	visibility=[ruuvi6BatteryIcon==70]
+        Text item=ruuvi6Battery icon="battery80"	visibility=[ruuvi6BatteryIcon==80]
+        Text item=ruuvi6Battery icon="battery90"	visibility=[ruuvi6BatteryIcon==90]
+        Text item=ruuvi6Battery icon="battery100"	visibility=[ruuvi6BatteryIcon==100]
+  }
+}

@@ -1,0 +1,10 @@
+// Dachzimmer
+String          ruuvi4Measurements       "Measurement:" { mqtt = "<[mosquitto:dach/measurements:state:default]" }
+DateTime        ruuvi4LastUpdate         "Last Update [%1$td.%1$tm.%1$tY %1$tR]"    <calendar>
+Number          ruuvi4Battery            "Battery Voltage [%.2f V]"
+Number          ruuvi4BatteryIcon        "Battery State [%d %%]"           <battery>
+Number          ruuvi4Humidity           "Humidity [%.2f %%]"              <humidity>
+Number          ruuvi4Pressure           "Pressure [%.2f hPa]"             <pressure>
+Number          ruuvi4Temperature        "Temperature [%.2f °C]"           <outdoortemp>
+Number          ruuvi4Rssi               "Rssi [%d dBm]"                   
+Number          ruuvi4RssiIcon            "Rssi State"                      <qualityofservice>

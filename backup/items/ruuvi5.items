@@ -1,0 +1,10 @@
+// Schlafzimmer
+String          ruuvi5Measurements       "Measurement:" { mqtt = "<[mosquitto:schlafzimmer/measurements:state:default]" }
+DateTime        ruuvi5LastUpdate         "Last Update [%1$td.%1$tm.%1$tY %1$tR]"    <calendar>
+Number          ruuvi5Battery            "Battery Voltage [%.2f V]"
+Number          ruuvi5BatteryIcon        "Battery State [%d %%]"           <battery>
+Number          ruuvi5Humidity           "Humidity [%.2f %%]"              <humidity>
+Number          ruuvi5Pressure           "Pressure [%.2f hPa]"             <pressure>
+Number          ruuvi5Temperature        "Temperature [%.2f °C]"           <outdoortemp>
+Number          ruuvi5Rssi               "Rssi [%d dBm]"                   
+Number          ruuvi5RssiIcon            "Rssi State"                     <qualityofservice>

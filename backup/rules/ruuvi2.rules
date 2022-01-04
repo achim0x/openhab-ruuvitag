@@ -1,0 +1,72 @@
+rule "ruuvi2Update" // Badezimmer
+when
+        Item ruuvi2Measurements received update
+then
+        ruuvi2LastUpdate.postUpdate(new DateTimeType())
+
+        var String json = (ruuvi2Measurements.state as StringType).toString
+
+        var Double battery = new Double(transform("JSONPATH", "$.batteryVoltage", json))
+        var Double humidity = new Double(transform("JSONPATH", "$.humidity", json))
+        var Double pressure = new Double(transform("JSONPATH", "$.pressure", json)) / 100
+        var Double temperature = new Double(transform("JSONPATH", "$.temperature", json))
+        var Double rssi = new Double(transform("JSONPATH", "$.rssi", json))
+        
+        ruuvi2Battery.postUpdate(battery)
+        
+        if (                   battery < 2.50) {
+                ruuvi2BatteryIcon.postUpdate(0)
+        }
+        if (battery >= 2.50 && battery < 2.55) {
+                ruuvi2BatteryIcon.postUpdate(10)
+        }
+        if (battery >= 2.55 && battery < 2.60) {
+                ruuvi2BatteryIcon.postUpdate(20)
+        }
+        if (battery >= 2.60 && battery < 2.65) {
+                ruuvi2BatteryIcon.postUpdate(30)
+        }
+        if (battery >= 2.65 && battery < 2.70) {
+                ruuvi2BatteryIcon.postUpdate(40)
+        }
+        if (battery >= 2.70 && battery < 2.75) {
+                ruuvi2BatteryIcon.postUpdate(50)
+        }
+        if (battery >= 2.75 && battery < 2.80) {
+                ruuvi2BatteryIcon.postUpdate(60)
+        }
+        if (battery >= 2.80 && battery < 2.85) {
+                ruuvi2BatteryIcon.postUpdate(70)
+        }
+        if (battery >= 2.85 && battery < 2.90) {
+                ruuvi2BatteryIcon.postUpdate(80)
+        }
+        if (battery >= 2.90 && battery < 2.95) {
+                ruuvi2BatteryIcon.postUpdate(90)
+        }
+        if (battery >= 2.95) {
+                ruuvi2BatteryIcon.postUpdate(100)
+        }
+        ruuvi2Humidity.postUpdate(humidity)
+        ruuvi2Pressure.postUpdate(pressure)
+        ruuvi2Temperature.postUpdate(temperature)
+        ruuvi2Rssi.postUpdate(rssi)
+
+        if (rssi < -105) {
+                ruuvi2RssiIcon.postUpdate(0)
+        }
+        if (rssi >= -105 && rssi < -100) {
+                ruuvi2RssiIcon.postUpdate(1)
+        }
+        if (rssi >= -100 && rssi < -90) {
+                ruuvi2RssiIcon.postUpdate(2)
+        }
+        if (rssi >= -90 && rssi < -80) {
+                ruuvi2RssiIcon.postUpdate(3)
+        }
+        if (rssi >= -80) {
+                ruuvi2RssiIcon.postUpdate(4)
+        }
+		
+end
+

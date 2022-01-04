@@ -1,6 +1,6 @@
-This repository is used to document setting up a raspberry pi with openHAB and collect sensordata from [ruuvitags](https://ruuvi.com/) based on pre-configured image:  
-<https://f.ruuvi.com/t/collecting-ruuvitag-measurements-and-displaying-them-with-grafana/267/153>  
-Download Link: <http://storage.ruuvi.com/ruuviberry_2018_04_18.img.zip>  
+This repository is used to document setting up a raspberry pi with openHAB and collect sensordata from [ruuvitags](https://ruuvi.com/) based on Raspbian Buster Lite:  
+<https://www.raspberrypi.org/downloads/raspbian/>
+
 See also: <https://blog.ruuvi.com/setting-up-raspberry-pi-3-as-a-ruuvi-gateway-6e4a5b676510>
 
 After competing this guide the following services are running:
@@ -11,6 +11,45 @@ After competing this guide the following services are running:
 + Mosquitto on port 8083
 + Samba Network Share for openHAB config
 
+# Setting up the Raspian
++ Download the Raspbian image
++ Under Windows use a tool like Win32DiskImager or Etcher to write the image to an SD Card
++ To activate SSH, go to the boot partition of the SD Card and create a file called "ssh" with no content
++ If you would like to setup WIFI or set a static IP Adress see here for more Information: <https://howtoraspberrypi.com/how-to-raspberry-pi-headless-setup/>
++ Connect the Raspi to the network and power it
+
+After the first login via SSH the following steps shall be done
++ Update the installed Software
+`sudo apt-get update`
+and
+`sudo apt-get upgrade`
+
++ Basic configuration with the tool raspi-config
+`sudo raspi-config`
+  + Change Password
+  + Localisation Options
+    + Change Time Zone
+  + Advanced Options
+    + Expand Filesystem to use complete SD card
+
+Finish raspi-config and reboot to take over filesystem resizeing `sudo reboot`
+  
+For 24/7 operation it is a good idea to move the root fs to an external HD or SSD.
+For Instructions see: https://www.carluccio.de/raspberry-pi-root-filesystem-auf-usb-festplatte/
+
+# Installing Influx DB
+add key for Influx repository
+`curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -`
+add repository
+`echo "deb https://repos.influxdata.com/debian buster stable" | sudo tee /etc/apt/sources.list.d/influxdb.list`
+`sudo apt-get update`
+install
+`sudo apt-get install -y influxdb`
+start
+`sudo systemctl start influxdb`
+`sudo systemctl enable influxdb`
+
+
 # Influx DB Retention Policy
 
 When operating the ruuvi collector for longer time, a lot of data is generated when measurements are pushed into the database every few seconds.
@@ -19,6 +58,10 @@ Therfore in this example the original data will be stored for 7 days, and delete
 For long term storage 30 minutes mean values of some measurements will be stored.
 
 Connect to raspberry shell and type influx to start the influx db command line interface.
+`influx`
+
+Create Databas
+`CREATE DATABASE ruuvi`
 
 Switch to ruuvi database  
 `> use ruuvi`
@@ -41,12 +84,21 @@ forever 0s 168h0m0s 1 false
 Create a continuous query for the data that you would like to store long term.  
 In this example the mean values of 30 minutes intervalls will be stored for temperature, humidity, pressure and battery voltage
 ```
-> CREATE CONTINUOUS QUERY cq_30m ON ruuvi BEGIN
-SELECT mean(temperature) as "mean_temperature", mean(humidity) as "mean_humidity",
-mean(pressure) as "mean_pressure", mean(batteryVoltage) as "mean_batteryVoltage"
-INTO ruuvi.forever.downsampled_measurements
-FROM ruuvi.autogen.ruuvi_measurements GROUP BY time(30m), * FILL(null) END
+> CREATE CONTINUOUS QUERY cq_30m ON ruuvi BEGIN SELECT mean(temperature) as "mean_temperature", mean(humidity) as "mean_humidity", mean(pressure) as "mean_pressure", mean(batteryVoltage) as "mean_batteryVoltage" INTO ruuvi.forever.downsampled_measurements FROM ruuvi.autogen.ruuvi_measurements GROUP BY time(30m), * FILL(null) END
 ```
+
+# Installing Grafana
+Check for latest Grafana release: https://grafana.com/grafana/download/6.5.3?platform=arm
+and install
+`sudo apt-get install -y adduser libfontconfig1`
+`wget https://dl.grafana.com/oss/release/grafana-rpi_6.5.3_armhf.deb`
+`sudo dpkg -i grafana-rpi_6.5.3_armhf.deb`
+`sudo /bin/systemctl enable grafana-server`
+`sudo /bin/systemctl start grafana-server`
+
+everything should be running now. You can connect to Grafana on port 3000. Default user is admin/admin
+
+
 # Grafana Dashboard mit Anonymem Zugriff
 
 Open shell and edit: `/etc/grafana/grafana.ini`  
@@ -74,11 +126,11 @@ On a default raspberry installation a quite old version of node.js is installed.
 See also: Node Red on Raspberry Pi:
 <https://nodered.org/docs/hardware/raspberrypi>  
 ```shell
-bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 ```
 
 ## Install Node Red as Service
-```
+```shell
 sudo systemctl enable nodered.service
 sudo systemctl start nodered
 ```
@@ -89,30 +141,28 @@ Now Node Red is available on Port 1880
 For accessing Bluetooth, Node Noble is used. See also:  
 <https://flows.nodered.org/node/node-red-contrib-noble>
 ```shell
-sudo apt-get install build-essential libudev-dev libbluetooth-dev
+sudo apt-get install -y build-essential libudev-dev libbluetooth-dev
 
 cd $HOME/.node-red
-npm install node-red-contrib-noble
+
+npm install @abandonware/noble
+npm install MatsA/node-red-contrib-noble
 
 sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)
 ```
 
 ## Install Node Influx DB
-Node Red also can write the measurements to the Influx DB, so the original Java based ruuvi collector is not needed any more. 
+Node Red can write the measurements to the Influx DB. 
 See also: <https://tobru.ch/ruuvitag-with-c-h-i-p-node-red-influxdb-and-grafana/>  
 ```
 npm install node-red-contrib-influxdb
-sudo systemctl disable ruuvicollector
 ```
 
 ## Install Ruuvi Node
-Create a new directory for Ruuvi Node.  
-`git clone https://github.com/achim0x/node-red`
-In the project root: 
 ```
-sudo npm link
 cd $HOME/.node-red
-npm link node-red-contrib-ruuvitag
+sudo apt-get install -y git-core
+npm install ojousima/node-red
 ```
 
 ## Import Node
@@ -123,7 +173,7 @@ For importing of node see:
 <https://wiki.fhem.de/wiki/MQTT_Einf%C3%BChrung>
 <http://www.iot-airclean.at/datenaustausch-mit-mqtt/>
 
-`sudo apt-get install mosquitto mosquitto-clients`
+`sudo apt-get install -y mosquitto mosquitto-clients`
  
 MQTT Server Test
 ```
@@ -150,19 +200,15 @@ apt-get update
 apt-get install zulu-embedded-8
 ```
 
-+ Remove Oracle Java:  
-   Attention: The zulu java to be installed bevore removing oracle java. Backup your Raspberry bevore removing old java.  
-   `sudo apt-get remove --purge oracle-java8-jdk`
-
 ## Install OpenHAB
 <https://docs.openhab.org/installation/linux.html#package-repository-installation>
 ```shell
+cd $HOME/
 wget -qO - 'https://bintray.com/user/downloadSubjectPublicKey?username=openhab' | sudo apt-key add -
-sudo apt-get install apt-transport-https
+sudo apt-get install -y apt-transport-https
 echo 'deb https://dl.bintray.com/openhab/apt-repo2 stable main' | sudo tee /etc/apt/sources.list.d/openhab2.list
 sudo apt-get update
-sudo apt-get install openhab2
-sudo apt-get install openhab2-addons openhab2-addons-legacy
+sudo apt-get install -y openhab2 openhab2-addons openhab2-addons-legacy
 sudo systemctl start openhab2.service
 sudo systemctl status openhab2.service
 sudo systemctl daemon-reload
@@ -219,7 +265,7 @@ See also: <https://docs.openhab.org/v2.1/addons/iconsets/classic/readme.html>
 To easily access openHab config, it is an good idea to setup samba to share the config files.  
 See also: <https://docs.openhab.org/installation/linux.html#network-sharing>
 ```shell
-sudo apt-get install samba samba-common-bin
+sudo apt-get install -y samba samba-common-bin
 sudo nano /etc/samba/smb.conf
 ```
 Replace the default config file by this:
@@ -265,6 +311,21 @@ influxd restore -portable /tmp/backup_ex
 
 ## Drop all measurements
 `> drop series from downsampled_measurements`
+
+# Safe data to mysql using node red
+## Install Node Red Node
+cd $HOME/.node-red
+npm install node-red-node-mysql
+## Install Maria DB
+sudo apt-get -y install mariadb-server mariadb-client
+sudo mysql_secure_installation
+## Install Apache / Php
+
+
+
+INSERT INTO `Sensor_BleMinute` (`ID`, `sensor`, `temperature`, `humidity`, `preassure`, `timestamp`) VALUES (NULL, 'garage', '22,22', '99', '9999', CURRENT_TIMESTAMP);
+
+apt-get -y install phpmyadmin
 
 # Todo for Sharing Image
 + Change pi user password
