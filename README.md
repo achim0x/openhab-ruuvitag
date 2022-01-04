@@ -148,6 +148,10 @@ cd $HOME/.node-red
 npm install @abandonware/noble
 npm install MatsA/node-red-contrib-noble
 
+npm install node-red-contrib-noble
+```
+Set capability to use bluetooth without super user rights
+```
 sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)
 ```
 
@@ -326,6 +330,12 @@ sudo mysql_secure_installation
 INSERT INTO `Sensor_BleMinute` (`ID`, `sensor`, `temperature`, `humidity`, `preassure`, `timestamp`) VALUES (NULL, 'garage', '22,22', '99', '9999', CURRENT_TIMESTAMP);
 
 apt-get -y install phpmyadmin
+## OpenHAB Backup / Restore
+`> sudo openhab-cli backup
+
+will create a backup in /var/lib/openhab2/backups, that can be restored with
+
+`> sudo openhab-cli restore
 
 # Todo for Sharing Image
 + Change pi user password
